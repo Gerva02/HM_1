@@ -34,6 +34,7 @@ plot(repht ~ height , data=Davis , xlab="height" , ylab= "reported height")
 
 # if we procede with the analysis without excluding the outlier the model isn't as precise as it could be
 mod <- lm ( repht ~ height , data=Davis )
+abline(a = mod$coefficients[1], b=mod$coefficients[2], col="blue") #the model clearly could be fitted better
 
 summary(mod)
 # we still see that it's still a significant model B0 and B1 are relevant because p-value: < 2.2e-16
