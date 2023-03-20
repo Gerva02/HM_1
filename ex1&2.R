@@ -11,7 +11,7 @@
 # sensata e provare a stimare un modello di regressione
 # lineare semplice scegliendo una tra le possibili esplicative
 # quantitative presenti nel dataset. Interpetare tutti i 
-# risultati ottenuti.
+# risultati ottenuti. # not done in this file 
 
 library(car)
 data("Davis")
