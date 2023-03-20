@@ -68,7 +68,7 @@ summary(mod)
 
 (Rsq2 <- cor(Davis2$height,Davis2$repht, use="pairwise.complete.obs")^2) 
 # Now the R^2 is almost one, which indicates an almost perfect correlation  
-# Furthermor the line maps much better on the data
+# Furthermore the line maps much better on the data
 
 
 
