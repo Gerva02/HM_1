@@ -7,6 +7,42 @@
 # lineare semplice scegliendo una tra le possibili esplicative
 # quantitative presenti nel dataset. Interpetare tutti i 
 # risultati ottenuti.
+library(dplyr)
+rm(list= ls())
+cereal <- read.csv("Cereal_Original.csv", sep = ";" ,header= T)
+View(cereal)
+str(cereal)
+summary(cereal)
+
+# let's either throw out of the matrix the qualitative variabiles that we dont need
+row.names(cereal) <- cereal$name 
+cereal <- cereal[,- c(1,2,3)]
+
+# let's convert the other in numeric 
+cereal <- mutate_if(cereal, is.character, function(x) gsub(",", ".", x))  
+# substitutes "," with "."
+cereal <- mutate_if(cereal, is.character, as.numeric)  
+# converts characters in numbers
+
+scatterplotMatrix(cereal)
+#to many variables let's focus on 2 in particular 
 
 
+plot(calories ~ sugars , data= cereal)
 
+# there seems to be a positive correlation between the two
+
+abline(v  = 0, lty=2)
+# there is one negative value , let's remove it 
+cereal$sugars[which(cereal$sugar < 0)] <- NA
+
+
+plot(calories ~ sugars , data= cereal)
+#we successfully removed the outlier
+
+mod <- lm(calories  ~ sugars , data= cereal)
+
+abline(a= mod$coefficients[1], b=mod$coefficients[2])
+
+(rsq <- cor(cereal$calories , cereal$sugars, use="pairwise.complete.obs")^2)
+# there is a slight positive correlation between sugar and calories
