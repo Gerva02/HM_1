@@ -46,3 +46,25 @@ abline(a= mod$coefficients[1], b=mod$coefficients[2])
 
 (rsq <- cor(cereal$calories , cereal$sugars, use="pairwise.complete.obs")^2)
 # there is a slight positive correlation between sugar and calories
+
+
+
+#-------verifying some descriptive stastistics --------
+
+#let's analyse the relationship bewteen sugar and ratings
+
+plot(rating~ sugars , data= cereal) # there seem to be a negative correlation 
+
+mod2 <- lm(rating~ sugars , data= cereal)
+
+abline(a= mod2$coefficients[1], b=mod2$coefficients[2], col = "red")
+
+
+sum(residuals(mod2)) # verifying the non-systematic errors 
+
+mean(fitted.values(mod2))
+
+mean(cereal$rating)
+
+
+#------------
